@@ -79,7 +79,7 @@ angular.module('starter.controllers', [])
   // var socket = io.connect(host);
 // console.log(socket);
 //   console.log(io());
-$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+// $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
   $scope.socket = socket.on('connect', function (data){
     socket.emit('remote');
     $scope.search.getVideos = function(query){

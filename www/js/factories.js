@@ -1,5 +1,9 @@
 app.factory('socket', function ($rootScope) {
-  var socket = io.connect();
+  // var socket = io.connect();
+  var socket = io.connect('http://10.8.67.47');
+    socket.on('connect', function(data){
+      socket.emit('screen')
+    })
   return {
     on: function (eventName, callback) {
       socket.on(eventName, function () {
