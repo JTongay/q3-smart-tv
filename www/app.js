@@ -24,7 +24,7 @@ if ('development' == app.get('env')) {
 
 //Routes
 app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/www/index.html');
+  res.sendfile(__dirname + '/index.html');
 });
 
 // app.get('/remote', function(req, res) {
