@@ -1,6 +1,6 @@
 app.factory('socket', function ($rootScope) {
   // var socket = io.connect();
-  var socket = io();
+  var socket = io({path:'/CAH/socket.io'});
     socket.on('connect', function(data){
       socket.emit('screen')
     })
