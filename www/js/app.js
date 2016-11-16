@@ -41,15 +41,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   }
-  // var logIn = {
-  //   name: 'login',
-  //   url: '/login',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/login.html'
-  //     }
-  //   }
-  // }
+
   var logIn = {
     name: 'login',
     url: '/login',
@@ -64,9 +56,20 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   }
 
+  var about = {
+    name: 'home.about',
+    url: 'about',
+    controller: 'About',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/about.html'
+      }
+    }
+  }
+
   var landingContent = {
     name: 'home.landing',
-    url: 'stuff',
+    url: 'search',
     controller: 'AppCtrl',
     views: {
       'menuContent': {
@@ -87,6 +90,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
 
 
   $stateProvider.state(home)
+  $stateProvider.state(about)
   $stateProvider.state(signUp)
   $stateProvider.state(logIn)
   $stateProvider.state(account)
@@ -142,6 +146,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
 
   // $urlRouterProvider.otherwise('app/browse');
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/about');
 
 });
