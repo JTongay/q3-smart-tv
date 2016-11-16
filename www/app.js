@@ -14,8 +14,10 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.static(path.join(__dirname, 'www')));
+app.use(express.static(path.join(__dirname, '/')));
 app.use(omx());
+
+console.log(__dirname);
 
 // development only
 if ('development' == app.get('env')) {
@@ -24,7 +26,7 @@ if ('development' == app.get('env')) {
 
 //Routes
 app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendfile('index.html');
 });
 
 // app.get('/remote', function(req, res) {
