@@ -1,6 +1,6 @@
 app.factory('socket', function ($rootScope) {
   // var socket = io.connect();
-  var socket = io.connect('http://10.8.67.47');
+  var socket = io();
     socket.on('connect', function(data){
       socket.emit('screen')
     })
