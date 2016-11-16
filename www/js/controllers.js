@@ -1,3 +1,9 @@
+// var express = require('express')
+//   , app = express()
+//   , server = require('http').createServer(app)
+//   , path = require('path')
+//   , io = require('socket.io').listen(server)
+
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
@@ -67,16 +73,22 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
+.controller('vidSearch', ['$scope', '$http', 'socket',function($scope, $http, socket) {
+  $scope.search = {};
+  // var host = document.location.origin;
+  // var socket = io.connect(host);
+// console.log(socket);
+//   console.log(io());
+  $scope.socket = socket.on('connect', function (data){
+    socket.emit('remote');
+    $scope.search.getVideos = function(query, socket){
+      $http.get("https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + config.key + "&maxResults=25").then(function(results){
+        console.log(results);
+      })
+    }
+  })
+  
+}])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
