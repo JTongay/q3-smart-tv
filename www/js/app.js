@@ -33,8 +33,9 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
   }
 
   var signUp = {
-    name: 'signup',
-    url: '/signup',
+    name: 'home.signup',
+    url: 'signup',
+    controller: 'AppCtrl',
     views: {
       'menuContent': {
         templateUrl: 'templates/signup.html'
@@ -43,19 +44,16 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
   }
 
   var logIn = {
-    name: 'login',
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'AppCtrl'
+    name: 'home.login',
+    url: 'login',
+    controller: 'AppCtrl',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+      }
+    }
   }
-
-  var signUp = {
-    name: 'signup',
-    url: '/signup',
-    templateUrl: 'templates/signup.html',
-    controller: 'AppCtrl'
-  }
-
+  
   var about = {
     name: 'home.about',
     url: 'about',
