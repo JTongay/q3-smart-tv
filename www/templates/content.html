@@ -18,5 +18,8 @@
     <button class="button button-block button-positive" ng-click="search.getVideos(search.query)">
   Search
   </button>
+  <div class="" ng-repeat="result in search.results">
+    <h3>{{result.videoId}}</h3>
+  </div>
   </ion-content>
 </ion-view>
