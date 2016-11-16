@@ -14,7 +14,7 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'www')));
 app.use(omx());
 
 // development only
@@ -24,12 +24,12 @@ if ('development' == app.get('env')) {
 
 //Routes
 app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/public/index.html');
+  res.sendfile(__dirname + '/www/index.html');
 });
 
-app.get('/remote', function(req, res) {
-  res.sendfile(__dirname + '/public/remote.html');
-});
+// app.get('/remote', function(req, res) {
+//   res.sendfile(__dirname + '/public/remote.html');
+// });
 
 app.get('/play/:video_id', function(req, res) {
 

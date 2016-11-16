@@ -82,12 +82,12 @@ angular.module('starter.controllers', [])
   $scope.socket = socket.on('connect', function (data){
     socket.emit('remote');
     $scope.search.getVideos = function(query, socket){
-      $http.get("https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + config.key + "&maxResults=25").then(function(results){
+      $http.get("http://galvanize-cors-proxy.herokuapp.com/https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + config.key + "&maxResults=25").then(function(results){
         console.log(results);
       })
     }
   })
-  
+
 }])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
