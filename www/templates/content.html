@@ -29,8 +29,8 @@
       <img ng-src="{{result.snippet.thumbnails.high.url}}">
     </div>
 
-    <a class="item item-icon-left assertive" href="#">
-      <i class="icon ion-videocamera" ng-click="search.watch(result.id.videoId)"></i>
+    <a class="item item-icon-left assertive" ng-click="search.watch({{result.id.videoId}})">
+      <i class="icon ion-videocamera"></i>
       Start Watching
     </a>
 

@@ -94,11 +94,14 @@ angular.module('starter.controllers', [])
     })
   }
 
-  $scope.search.watch = function(id){
+  $scope.search.watch = function(videoId){
+    console.log('booyah');
+    console.log(videoId);
     socket.emit('video', {
       action: 'play',
-      video_id: id
+      video_id: videoId
     })
+    console.log(videoId);
   }
 }])
 
