@@ -1,29 +1,26 @@
-app.factory('socket', function ($rootScope) {
+app.factory('socket', function($rootScope) {
   // var socket = io.connect();
 
-console.log('im in');
-  var socket = io();
-    socket.on('connect', function(data){
-      console.log('connecting');
-      socket.emit('screen')
-    })
+  console.log('im in');
+  var socket = new io.Socket();
+  socket.connect('http://10.8.67.47:8080')
 
 
   return {
-    on: function (eventName, callback) {
-      socket.on(eventName, function () {
+    on: function(eventName, callback) {
+      socket.on(eventName, function() {
         var args = arguments;
-        $rootScope.$apply(function () {
+        $rootScope.$apply(function() {
           callback.apply(socket, args);
         });
       });
     },
-    emit: function (eventName, data, callback) {
+    emit: function(eventName, data, callback) {
       console.log('booyah factory');
-      socket.emit(eventName, data, function () {
+      socket.emit(eventName, data, function() {
         console.log('booyah emit');
         var args = arguments;
-        $rootScope.$apply(function () {
+        $rootScope.$apply(function() {
           if (callback) {
             callback.apply(socket, args);
           }
