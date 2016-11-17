@@ -53,8 +53,8 @@ app.get('/play', function(req, res) {
   //Run and pipe shell script output
   function run_shell(cmd, args, cb, end) {
     var spawn = require('child_process').spawn,
-    child = spawn(cmd, args),
-    me = this;
+      child = spawn(cmd, args),
+      me = this;
     child.stdout.on('data', function(buffer) {
       cb(me, buffer);
     });
@@ -101,24 +101,24 @@ app.get('/play', function(req, res) {
     });
 
     socket.on("video", function(data) {
-      console.log('booyah initial');
+      console.log('data', 'video');
       if (data.action === "play") {
         console.log('booyah play');
         var id = data.video_id,
-        url = "http://www.youtube.com/watch?v=" + id;
+          url = "http://www.youtube.com/watch?v=" + id;
 
         var runShell = new run_shell('youtube-dl', ['-o', '%(id)s.%(ext)s', '-f', '/18/22', url],
-        function(me, buffer) {
-          me.stdout += buffer.toString();
-          socket.emit("loading", {
-            output: me.stdout
+          function(me, buffer) {
+            me.stdout += buffer.toString();
+            socket.emit("loading", {
+              output: me.stdout
+            });
+            console.log(me.stdout);
+          },
+          function() {
+            //child = spawn('omxplayer',[id+'.mp4']);
+            omx.start(id + '.mp4');
           });
-          console.log(me.stdout);
-        },
-        function() {
-          //child = spawn('omxplayer',[id+'.mp4']);
-          omx.start(id + '.mp4');
-        });
       }
 
     });

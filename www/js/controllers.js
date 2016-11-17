@@ -98,8 +98,8 @@ angular.module('starter.controllers', [])
     console.log('booyah');
     console.log(videoId);
 
-    var socket = io();
-    socket.on('connect', function(data) {
+    var socket = io('http://localhost');
+    socket.on('connect', function(videoId) {
 
       socket.emit('video', {
         action: 'play',
