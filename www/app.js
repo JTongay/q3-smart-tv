@@ -59,7 +59,7 @@ function run_shell(cmd, args, cb, end) {
 
 //Socket.io Server
 io.on('connection', function(socket) {
-
+  console.log('connected');
   socket.on("screen", function(data) {
     socket.type = "screen";
     ss = socket;
@@ -97,6 +97,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on("video", function(data) {
+    console.log(data);
     console.log('booyah initial');
     if (data.action === "play") {
       console.log('booyah play');
