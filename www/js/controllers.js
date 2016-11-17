@@ -74,6 +74,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('vidSearch', ['$scope', '$http', 'socket',function($scope, $http, socket) {
+  console.log(socket);
   $scope.search = {};
   // var host = document.location.origin;
   // var socket = io.connect(host);
