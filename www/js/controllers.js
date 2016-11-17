@@ -97,7 +97,7 @@ angular.module('starter.controllers', [])
   $scope.search.watch = function(videoId) {
     console.log('booyah');
     console.log(videoId, "outer");
-    var socket = io.connect('http://localhost');
+    var socket = io.connect('http://localhost:8080');
     socket.on('connect', function(videoId) {
       console.log(videoId, "inner");
       socket.emit('video', {
