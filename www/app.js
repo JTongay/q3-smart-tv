@@ -58,7 +58,7 @@ function run_shell(cmd, args, cb, end) {
 }
 
 //Socket.io Server
-io.on('connection', function(socket) {
+io.sockets.on('connection', function(socket) {
   console.log('connected');
   socket.on("screen", function(data) {
     socket.type = "screen";
