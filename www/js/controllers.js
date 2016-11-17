@@ -97,10 +97,8 @@ angular.module('starter.controllers', [])
   $scope.search.watch = function(videoId){
     console.log('booyah');
     console.log(videoId);
-    // var socket = io();
-    // socket.on('connect', function(data){
-    //   socket.emit('screen')
-    // })
+    var socket = new io.Socket();
+    socket.connect('http://10.8.67.47')
 socket.on('connect', function(){
   socket.on("video", function(data) {
     console.log('booyah initial');
