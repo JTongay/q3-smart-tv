@@ -95,6 +95,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.search.watch = function(videoId) {
+    console.log(socket);
     console.log('booyah');
     console.log(videoId, "outer");
     socket.emit('video', {
