@@ -2,7 +2,7 @@ app.factory('socket', function ($rootScope) {
   // var socket = io.connect();
 
 console.log('im in');
-  var socket = io('http://192.168.1.31/');
+  var socket = io();
     socket.on('connect', function(data){
       console.log('connecting');
       socket.emit('screen')
