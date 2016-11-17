@@ -92,14 +92,14 @@ angular.module('starter.controllers', [])
       // console.log(socket.emit('video'));
     })
   }
-  var socket = io('http://10.8.67.47:8080'); //connect
-  console.log(socket.emit('video', {
-    action: 'play',
-    video_id: videoId
-  }));
 
 
   $scope.search.watch = function(videoId) {
+    var socket = io('http://10.8.67.47:8080'); //connect
+    console.log(socket.emit('video', {
+      action: 'play',
+      video_id: videoId
+    }));
     console.log('booyah');
     console.log(videoId, "outer");
 
