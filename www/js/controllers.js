@@ -105,8 +105,9 @@ angular.module('starter.controllers', [])
         video_id: videoId
       })
       console.log(videoId);
-    })
-  });
+    });
+  }
+
 }])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {})
