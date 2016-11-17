@@ -98,16 +98,16 @@ angular.module('starter.controllers', [])
     console.log('booyah');
     console.log(videoId);
 
-    // var socket = io();
-    // socket.on('connect', function(data){
-    //   socket.emit('screen')
-    // })
-    socket.emit('video', {
-      action: 'play',
-      video_id: videoId
+    var socket = io();
+    socket.on('connect', function(data) {
+
+      socket.emit('video', {
+        action: 'play',
+        video_id: videoId
+      })
     })
-    // socket.emit(videoId);
     console.log(videoId);
+
   }
 
 }])
