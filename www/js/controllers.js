@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('vidSearch', ['$scope', '$http', 'socket', function($scope, $http, socket) {
+.controller('vidSearch', ['$scope', '$http', function($scope, $http) {
   $scope.search = {};
   // var host = document.location.origin;
   // var socket = io.connect(host);
@@ -92,12 +92,17 @@ angular.module('starter.controllers', [])
       // console.log(socket.emit('video'));
     })
   }
+  var socket = io('http://10.8.67.47:8080'); //connect
+
 
   $scope.search.watch = function(videoId) {
     console.log('booyah');
     console.log(videoId, "outer");
 
-    socket.emit('video', 'yo', function(data) {
+    socket.emit('video', {
+      action: 'play',
+      video_id: videoId
+    }, function(data) {
       console.log(data, "inside emit method");
     })
 

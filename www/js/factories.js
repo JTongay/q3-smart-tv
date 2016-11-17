@@ -24,24 +24,3 @@ app.factory('socket', function($rootScope) {
     }
   }
 });
-
-
-//   emit: function(id){
-//     console.log('in emit factory');
-//     var url = "http://www.youtube.com/watch?v=" + id;
-//     var runShell = new run_shell('youtube-dl', ['-o', '%(id)s.%(ext)s', '-f', '/18/22', url],
-//     function(me, buffer) {
-//       console.log('first function');
-//       me.stdout += buffer.toString();
-//       socket.emit("loading", {
-//         output: me.stdout
-//       });
-//       console.log(me.stdout);
-//     },
-//     function() {
-//       console.log('second function');
-//       //child = spawn('omxplayer',[id+'.mp4']);
-//       omx.start(id + '.mp4');
-//     });
-//   }
-// };
