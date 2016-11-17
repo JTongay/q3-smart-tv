@@ -96,15 +96,16 @@ angular.module('starter.controllers', [])
 
   $scope.search.watch = function(videoId) {
     console.log('booyah');
-    console.log(videoId);
+    console.log(videoId, "outer");
     var socket = io();
-    socket.on('connect', function(data) {
+    socket.on('connect', function(videoId) {
+      console.log(videoId, "inner");
       socket.emit('video', {
         action: 'play',
         video_id: videoId
       })
     })
-    console.log(videoId);
+    console.log(videoId, "after");
   }
 }])
 
