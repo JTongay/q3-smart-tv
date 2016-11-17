@@ -100,7 +100,7 @@ angular.module('starter.controllers', [])
     var socket = io();
     socket.on('connect', function(videoId) {
       console.log(videoId, "inner");
-      socket.emit('video', {
+      socket.broadcast.emit('video', {
         action: 'play',
         video_id: videoId
       })
