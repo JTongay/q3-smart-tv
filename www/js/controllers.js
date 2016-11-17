@@ -87,7 +87,6 @@ angular.module('starter.controllers', [])
 
   $scope.search.getVideos = function(query) {
     $http.get("https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + "AIzaSyDOB7yYD2E_NK1P0HnPrgCN_hKmP-DYSIo" + "&maxResults=25").then(function(results) {
-      console.log(results.data.items);
       var results = results.data.items;
       $scope.search.results = results;
       // console.log(socket.emit('video'));
@@ -95,12 +94,14 @@ angular.module('starter.controllers', [])
   }
 
   $scope.search.watch = function(videoId) {
-    console.log(socket);
     console.log('booyah');
     console.log(videoId, "outer");
+
     socket.emit('video', 'yo', function(data) {
       console.log(data, "inside emit method");
     })
+
+
     console.log(videoId, "after");
   }
 }])

@@ -3,6 +3,7 @@ app.factory('socket', function($rootScope) {
 
   console.log('im in');
   var socket = io();
+  console.log(socket);
 
 
   return {
