@@ -97,10 +97,10 @@ angular.module('starter.controllers', [])
   $scope.search.watch = function(videoId) {
     console.log('booyah');
     console.log(videoId, "outer");
-    var socket = io();
+    var socket = io.connect('http://localhost');
     socket.on('connect', function(videoId) {
       console.log(videoId, "inner");
-      socket.broadcast.emit('video', {
+      socket.emit('video', {
         action: 'play',
         video_id: videoId
       })

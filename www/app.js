@@ -37,10 +37,6 @@ app.get('/', function(req, res) {
   res.sendfile('index.html');
 });
 
-// app.get('/remote', function(req, res) {
-//   res.sendfile(__dirname + '/public/remote.html');
-// });
-
 
 io.set('log level', 1);
 
@@ -62,7 +58,7 @@ function run_shell(cmd, args, cb, end) {
 }
 
 //Socket.io Server
-io.sockets.on('connection', function(socket) {
+io.on('connection', function(socket) {
 
   socket.on("screen", function(data) {
     socket.type = "screen";
