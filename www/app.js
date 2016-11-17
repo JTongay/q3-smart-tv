@@ -8,6 +8,7 @@ const omx = require('omxcontrol');
 
 
 
+
 // all environments
 app.set('port', process.env.TEST_PORT || 8080);
 app.use(express.favicon());
@@ -105,8 +106,9 @@ io.sockets.on('connection', function(socket) {
   });
 
   socket.on("video", function(data) {
-
+console.log('booyah initial');
     if (data.action === "play") {
+      console.log('booyah play');
       var id = data.video_id,
         url = "http://www.youtube.com/watch?v=" + id;
 
