@@ -18,8 +18,22 @@
     <button class="button button-block button-positive" ng-click="search.getVideos(search.query)">
   Search
   </button>
-  <div class="" ng-repeat="result in search.results">
-    <h3>{{result.id.videoId}}</h3>
-  </div>
+  <div class="list card" ng-repeat="result in search.results">
+
+    <div class="item">
+      <h2>{{result.snippet.title}}</h2>
+      <p>{{result.snippet.channelTitle}}</p>
+    </div>
+
+    <div class="item item-image">
+      <img ng-src="{{result.snippet.thumbnails.high.url}}">
+    </div>
+
+    <a class="item item-icon-left assertive" href="#">
+      <i class="icon ion-videocamera" ng-click="search.watch(result.id.videoId)"></i>
+      Start Watching
+    </a>
+
+</div>
   </ion-content>
 </ion-view>

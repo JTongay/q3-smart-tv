@@ -80,10 +80,10 @@ angular.module('starter.controllers', [])
 // console.log(socket);
 //   console.log(io());
 // $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
-  $scope.socket = socket.on('connect', function (data){
-    socket.emit('remote');
-
-  })
+  // $scope.socket = socket.on('connect', function (data){
+  //   socket.emit('remote');
+  //
+  // })
 
   $scope.search.getVideos = function(query){
     $http.get("https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + "AIzaSyDOB7yYD2E_NK1P0HnPrgCN_hKmP-DYSIo" + "&maxResults=25").then(function(results){
@@ -91,6 +91,13 @@ angular.module('starter.controllers', [])
       var results = results.data.items;
       $scope.search.results = results;
       // console.log(socket.emit('video'));
+    })
+  }
+
+  $scope.search.watch = function(id){
+    socket.emit('video', {
+      action: 'play',
+      video_id: id
     })
   }
 }])
