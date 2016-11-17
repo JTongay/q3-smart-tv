@@ -98,10 +98,7 @@ angular.module('starter.controllers', [])
     console.log(socket);
     console.log('booyah');
     console.log(videoId, "outer");
-    socket.emit('video', {
-      action: 'play',
-      video_id: videoId
-    }, function(data) {
+    socket.emit('video', 'yo', function(data) {
       console.log(data, "inside emit method");
     })
     console.log(videoId, "after");
