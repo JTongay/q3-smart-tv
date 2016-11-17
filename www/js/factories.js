@@ -19,6 +19,7 @@ app.factory('socket', function($rootScope) {
     emit: function(eventName, data, callback) {
       console.log('booyah factory');
       socket.emit('video', 'booyah');
+      console.log('hello');
 
     }
   }
