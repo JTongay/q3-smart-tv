@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const path = require('path');
-// const io = require('socket.io').listen(server);
+const io = require('socket.io').listen(server);
 const spawn = require('child_process').spawn;
 const omx = require('omxcontrol');
 
@@ -47,7 +47,7 @@ app.get('/play/:video_id', function(req, res) {
 
 
 //Socket.io Config
-io.set('log level', 1);
+// io.set('log level', 1);
 
 server.listen(app.get('port'), function() {
   console.log('piTV is running on port ' + app.get('port'));

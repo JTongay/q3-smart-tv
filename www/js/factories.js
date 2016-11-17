@@ -55,7 +55,7 @@
 // // };
 app.factory('socket',function(socketFactory){
 	//Create socket and connect to http://chat.socket.io
- 	var myIoSocket = io.connect('http://192.168.1.31/');
+ 	var myIoSocket = io.connect('http://10.8.67.47');
 
   var mySocket = socketFactory({
     	ioSocket: myIoSocket
