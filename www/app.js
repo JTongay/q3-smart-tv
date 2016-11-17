@@ -1,10 +1,11 @@
+require('events');
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
 const path = require('path');
-const io = require('socket.io').listen(server);
 const spawn = require('child_process').spawn;
 const omx = require('omxcontrol');
+// some stuff may be here
 
 
 
@@ -36,13 +37,14 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
   res.sendfile('index.html');
 });
-
-
-io.set('log level', 1);
-
 server.listen(app.get('port'), function() {
   console.log('piTV is running on port ' + app.get('port'));
 });
+
+const io = require('socket.io').listen(server);
+
+io.set('log level', 1);
+
 
 var ss;
 
@@ -59,6 +61,7 @@ function run_shell(cmd, args, cb, end) {
 
 //Socket.io Server
 io.sockets.on('connection', function(socket) {
+
   console.log('connected');
   socket.on("screen", function(data) {
     socket.type = "screen";
