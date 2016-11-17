@@ -2,7 +2,8 @@ app.factory('socket', function($rootScope) {
   // var socket = io.connect();
 
   console.log('im in');
-  var socket = io();
+  var socket = io('http://localhost:8080'); //connect
+
   console.log(socket);
 
 
@@ -17,15 +18,8 @@ app.factory('socket', function($rootScope) {
     },
     emit: function(eventName, data, callback) {
       console.log('booyah factory');
-      socket.emit(eventName, data, function() {
-        console.log('booyah emit');
-        var args = arguments;
-        $rootScope.$apply(function() {
-          if (callback) {
-            callback.apply(socket, args);
-          }
-        });
-      })
+      socket.emit('video', 'booyah');
+
     }
   }
 });
