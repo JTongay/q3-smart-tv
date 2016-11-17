@@ -101,10 +101,34 @@ angular.module('starter.controllers', [])
     // socket.on('connect', function(data){
     //   socket.emit('screen')
     // })
-    socket.emit('video', {
-      action: 'play',
-      video_id: videoId
-    })
+socket.on('connect', function(){
+  socket.on("video", function(data) {
+    console.log('booyah initial');
+    if (data.action === "play") {
+      console.log('booyah play');
+      var id = data.video_id,
+      url = "http://www.youtube.com/watch?v=" + id;
+
+      var runShell = new run_shell('youtube-dl', ['-o', '%(id)s.%(ext)s', '-f', '/18/22', url],
+      function(me, buffer) {
+        me.stdout += buffer.toString();
+        socket.emit("loading", {
+          output: me.stdout
+        });
+        console.log(me.stdout);
+      },
+      function() {
+        //child = spawn('omxplayer',[id+'.mp4']);
+        omx.start(id + '.mp4');
+      });
+    }
+
+  });
+})
+socket.emit('video', {
+  action: 'play',
+  video_id: videoId
+})
     // socket.emit(videoId);
     console.log(videoId);
   }
