@@ -13,6 +13,19 @@ piTV is a mobile application that allows you to stream content from your phone t
 * Javascript
 * HTML5
 * CSS3
+* Ionic Framework
+
+### Instructions
+
+* This project requires the Raspbian OS, OMXPlayer, and Youtube-dl installed on your Pi.
+
+1. Clone our repo into your folder of choice on your Raspberry Pi.
+
+2. Cd to the appropriate folder in your terminal and run npm install.
+
+3. Run npm start to start the server on port 8080.
+
+4. Open the app and watch to your heart's content.
 
 
 ###Group member's Github accounts and email
