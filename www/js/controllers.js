@@ -93,6 +93,7 @@ angular.module('starter.controllers', [])
     })
   }
   var socket = io('http://10.8.67.47:8080'); //connect
+  console.log(socket.emit);
 
 
   $scope.search.watch = function(videoId) {
