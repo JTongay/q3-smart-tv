@@ -97,13 +97,11 @@ angular.module('starter.controllers', [])
   $scope.search.watch = function(videoId) {
     console.log('booyah');
     console.log(videoId, "outer");
-    var socket = io.connect('http://10.8.67.47');
-    socket.on('connect', function(videoId) {
-      console.log(videoId, "inner");
-      socket.emit('video', {
-        action: 'play',
-        video_id: videoId
-      })
+    socket.emit('video', {
+      action: 'play',
+      video_id: videoId
+    }, function(data) {
+      console.log(data, "inside emit method");
     })
     console.log(videoId, "after");
   }
