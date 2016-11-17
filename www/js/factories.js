@@ -1,8 +1,10 @@
 app.factory('socket', function ($rootScope) {
   // var socket = io.connect();
 
-  var socket = io();
+console.log('im in');
+  var socket = io('http://192.168.1.31/');
     socket.on('connect', function(data){
+      console.log('connecting');
       socket.emit('screen')
     })
 
