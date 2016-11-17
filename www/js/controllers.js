@@ -73,8 +73,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('vidSearch', ['$scope', '$http', 'socket',function($scope, $http, socket) {
-  console.log(socket.on());
+.controller('vidSearch', ['$scope', '$http', 'socket',function($scope, $http, $socket) {
+  console.log($socket.connect('http://10.8.67.47'));
   $scope.search = {};
   // var host = document.location.origin;
   // var socket = io.connect(host);
@@ -99,9 +99,9 @@ angular.module('starter.controllers', [])
     console.log('booyah');
     console.log(videoId);
     var socket = new io.Socket();
-    socket.connect('http://10.8.67.47')
-socket.on('connect', function(){
-  socket.on("video", function(data) {
+    $socket.connect('http://10.8.67.47')
+$socket.on('connect', function(){
+  $socket.on("video", function(data) {
     console.log('booyah initial');
     if (data.action === "play") {
       console.log('booyah play');
@@ -111,7 +111,7 @@ socket.on('connect', function(){
       var runShell = new run_shell('youtube-dl', ['-o', '%(id)s.%(ext)s', '-f', '/18/22', url],
       function(me, buffer) {
         me.stdout += buffer.toString();
-        socket.emit("loading", {
+        $socket.emit("loading", {
           output: me.stdout
         });
         console.log(me.stdout);
