@@ -100,13 +100,13 @@ angular.module('starter.controllers', [])
     var host = document.location.origin;
     var socket = io.connect(host);
     socket.on('connect', function(data) {
-        socket.emit('video', {
-          action: 'play',
-          video_id: videoId
-        })
-        console.log(videoId);
-      }
-    });
+      socket.emit('video', {
+        action: 'play',
+        video_id: videoId
+      })
+      console.log(videoId);
+    })
+  });
 }])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {})
