@@ -76,6 +76,17 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
     }
   }
 
+  var regIpAddress = {
+    name: 'home.register',
+    url: 'register',
+    controller: 'ipAssign',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/ipaddress.html'
+      }
+    }
+  }
+
   var account = {
     name: 'account',
     url: '/users/:userid/account',
@@ -91,7 +102,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers'])
   $stateProvider.state(about)
   $stateProvider.state(signUp)
   $stateProvider.state(logIn)
-  $stateProvider.state(account)
+  $stateProvider.state(regIpAddress)
   $stateProvider.state(landingContent)
 
   // if none of the above states are matched, use this as the fallback

@@ -73,7 +73,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('vidSearch', ['$scope', '$http', function($scope, $http) {
+.controller('vidSearch', ['$scope', '$http', 'ipMan',function($scope, $http, ipMan) {
   $scope.search = {};
   // var host = document.location.origin;
   // var socket = io.connect(host);
@@ -85,6 +85,9 @@ angular.module('starter.controllers', [])
   //
   // })
 
+  $scope.search.address = ipMan.getIp()
+
+
   $scope.search.getVideos = function(query) {
     $http.get("https://www.googleapis.com/youtube/v3/search?order=viewcount&part=snippet&q=" + query + "&type=video+&videoDefinition=high&key=" + "AIzaSyDOB7yYD2E_NK1P0HnPrgCN_hKmP-DYSIo" + "&maxResults=25").then(function(results) {
       var results = results.data.items;
@@ -95,7 +98,7 @@ angular.module('starter.controllers', [])
 
 
   $scope.search.watch = function(videoId) {
-    var socket = io('http://10.8.67.47:8080'); //connect
+    var socket = io('http://' + $scope.search.address + ':8080'); //connect
     console.log(socket.emit('video', {
       action: 'play',
       video_id: videoId
@@ -113,6 +116,16 @@ angular.module('starter.controllers', [])
 
     console.log(videoId, "after");
   }
+}])
+
+.controller('ipAssign', ['$scope', 'ipMan','$state', function($scope, ipMan, $state){
+
+  $scope.view = {};
+  $scope.view.registerIp = function(address){
+    ipMan.addIp(address)
+    $state.go('home.landing')
+  }
+
 }])
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {})
