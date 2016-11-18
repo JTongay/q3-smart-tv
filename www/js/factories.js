@@ -23,4 +23,17 @@ app.factory('socket', function($rootScope) {
 
     }
   }
-});
+})
+app.service('ipMan', function(){
+  this.address = '';
+  this.addIp = function(ip){
+    this.address = ip
+    console.log(this.address, "inside addip");
+  }
+  this.getIp = function(){
+    console.log(this.address, "inside getip");
+    return this.address;
+  }
+
+
+})
