@@ -25,7 +25,7 @@ app.factory('socket', function($rootScope) {
   }
 })
 app.service('ipMan', function(){
-  this.address = '10.2.4.5.6'
+  this.address = '';
   this.addIp = function(ip){
     this.address = ip
     console.log(this.address, "inside addip");
