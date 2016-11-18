@@ -5,6 +5,10 @@ const server = require('http').Server(app);
 const path = require('path');
 const spawn = require('child_process').spawn;
 const omx = require('omxcontrol');
+const knex = require('./knex');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 // some stuff may be here
 
 
@@ -37,6 +41,51 @@ if ('development' == app.get('env')) {
 app.get('/', function(req, res) {
   res.sendfile('index.html');
 });
+
+app.post('/api/users/new', function(req, res){
+  const errors = []
+
+    if (!req.body.username || !req.body.username.trim()) errors.push("Name can't be blank");
+    if (!req.body.password || !req.body.password.trim()) errors.push("Password can't be blank");
+
+  if(errors.length){
+    res.status(422).json({
+      errors: errors
+    })
+  } else {
+    knex('users')
+    .whereRaw('lower(email) = ?', req.body.username.toLowerCase())
+    .count()
+    .first()
+    .then(function(result){
+      if(result.count === "0"){
+        var hashedPassword = bcrypt.hashSync(req.body.password, 10);
+        knex('users').insert({
+          username: req.body.username,
+          password: hashedPassword
+        })
+        .returning('*')
+        .then(function(users){
+          const user = users[0];
+          const token = jwt.sign({id: user.id}, process.env.JWT_SECRET);
+
+          res.json({
+                id: user.id,
+                username: user.username,
+                token: token
+              })
+        })
+      }
+    })
+  }
+
+})
+
+app.get('/api/users/:userid/ips', function(req, res){
+  knex('users').innerJoin('ips', 'users.id', 'ips.user_id').then(function(list){
+    res.json(list)
+  })
+})
 server.listen(app.get('port'), function() {
   console.log('piTV is running on port ' + app.get('port'));
 });
