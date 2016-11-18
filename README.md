@@ -4,6 +4,10 @@
 
 piTV is a mobile application that allows you to stream content from your phone to a Raspberry Pi turning your "dumb" TV into a smart TV at a fraction of the cost.
 
+### Project Blog
+
+Follow our interesting week at: https://jtongay.github.io/q3-static-site/index.html
+
 
 ###Technical Stack
 * Node
