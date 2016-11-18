@@ -85,7 +85,12 @@ angular.module('starter.controllers', [])
   //
   // })
 
-  $scope.search.address = ipMan.getIp()
+  $scope.search.giveMeIp = function(){
+    $scope.search.address = ipMan.getIp()
+    console.log($scope.search.address, "this is the address");
+    console.log(ipMan, "ipMan");
+  }
+
 
 
   $scope.search.getVideos = function(query) {
@@ -124,6 +129,7 @@ angular.module('starter.controllers', [])
   $scope.view.registerIp = function(address){
     ipMan.addIp(address)
     $state.go('home.landing')
+    ipMan.getIp()
   }
 
 }])
